@@ -1,5 +1,5 @@
 /*
- * test harness for DSAHashtable used in previous practicals
+ * test harness for Hashtable
  */
 public class UnitTestHash 
 {
@@ -12,13 +12,13 @@ public class UnitTestHash
     
     public static void testTwo()
     {
-        DSAHashTable hashTable = new DSAHashTable();
+        HashTable hashTable = new HashTable();
         hashTable.put("5","five");
         hashTable.put("6","six");
         hashTable.put("7", "seven");
         hashTable.writeCSV("testtwo.csv");
     
-        DSAHashTable table2 = new DSAHashTable();
+        HashTable table2 = new HashTable();
         table2.readCSV("testone.csv");
         table2.writeCSV("testthree.csv");
         System.out.println(table2.get("DSAhelp"));
@@ -26,7 +26,7 @@ public class UnitTestHash
 
     static public void testOne()
     {
-        DSAHashTable hashTable = new DSAHashTable();
+        HashTable hashTable = new HashTable();
         
         hashTable.put("12","twelve");
         hashTable.put("21", "twentyOne");

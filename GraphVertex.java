@@ -1,5 +1,5 @@
 /*
- * Abstract data type used in previous practicals
+ * Abstract data type used in GraphMap data structure
  */
 
 import java.util.Iterator;
@@ -8,7 +8,7 @@ public class GraphVertex
 {
     private String label; // name of vertex
     private Object value; // whatever you want to store in the vertex
-    private DSALinkedList list; // list of Strings to hold adjacent vertices
+    private LinkedList list; // list of Strings to hold adjacent vertices
     private boolean visited;
 
     // Constructor 1, create node with label (all nodes must have a label)
@@ -16,7 +16,7 @@ public class GraphVertex
     {
         label = inLabel;
         value = new Location(inLabel);
-        list = new DSALinkedList();
+        list = new LinkedList();
         visited = false;
     }
 
@@ -25,7 +25,7 @@ public class GraphVertex
     {
         label = inLabel;
         value = inVal;
-        list = new DSALinkedList();
+        list = new LinkedList();
         visited = false;
     }
 
@@ -46,9 +46,9 @@ public class GraphVertex
         return value;
     }
 
-    public DSALinkedList getAdjacent()
+    public LinkedList getAdjacent()
     {
-        DSALinkedList ret = list.cloneList();
+        LinkedList ret = list.cloneList();
         return ret;
     }
 
@@ -96,7 +96,7 @@ public class GraphVertex
     public Double removeAdj(String pLabel)
     {
         Iterator adjIter = list.iterator();
-        DSALinkedList newList = new DSALinkedList();
+        LinkedList newList = new LinkedList();
         Double ret = null;
 
         while (adjIter.hasNext())

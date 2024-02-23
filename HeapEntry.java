@@ -1,5 +1,5 @@
 /*
- * Abstract data type used in previous practicals
+ * Abstract data type to use in Heap data structure
  */
 
 public class HeapEntry

@@ -1,5 +1,5 @@
 /*
- * Test harness for DSAHeap used in previous practicals
+ * Test harness for Heap
  */
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class UnitTestHeap
 
     public static void run()
     {
-        DSAHeap heap = new DSAHeap();
+        Heap heap = new Heap();
         
         for (int i = 0; i < 5; i++)
         {
@@ -59,7 +59,7 @@ public class UnitTestHeap
         }
         System.out.println();
 
-        DSAHeap heapSorting = new DSAHeap();
+        Heap heapSorting = new Heap();
         heapSorting.heapSort(intarr);
         for (int i : intarr)
         {

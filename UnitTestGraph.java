@@ -1,5 +1,5 @@
 /*
- * Test harness for GraphMap used in previous practicals
+ * Test harness for GraphMap
  */
 
 public class UnitTestGraph 

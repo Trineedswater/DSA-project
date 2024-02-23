@@ -10,14 +10,14 @@ import java.io.Serializable;
 
 public class GraphMap implements Serializable
 {
-    private DSALinkedList vertices;
-    private DSALinkedList edges; //edges are also stored in each vertices, as adjacent edges, this list is used to easily navigate all edges in the graph without iterating through vertices
+    private LinkedList vertices;
+    private LinkedList edges; //edges are also stored in each vertices, as adjacent edges, this list is used to easily navigate all edges in the graph without iterating through vertices
 
     // Constructor starts with empty graph
     public GraphMap()
     {
-        vertices = new DSALinkedList();
-        edges = new DSALinkedList();
+        vertices = new LinkedList();
+        edges = new LinkedList();
     }
 
     // does the vertex exist in the graph?
@@ -171,7 +171,7 @@ public class GraphMap implements Serializable
         // add edge to adjacent list on both vertices
         // create a new list which takes in vertices from vertices-list one at a time, checking if it is matches the incoming label as it passes
         // undirected, this will add 2 edges to 2 vertices
-        DSALinkedList newVertList = new DSALinkedList();
+        LinkedList newVertList = new LinkedList();
         while(!vertices.isEmpty())
         {
             GraphVertex jarVertex = (GraphVertex)vertices.removeFirst();
@@ -255,7 +255,7 @@ public class GraphMap implements Serializable
     public Object[][] getAdjacent(String label)
     {
         GraphVertex jarNode = getVertex(label);
-        DSALinkedList adjList = jarNode.getAdjacent();
+        LinkedList adjList = jarNode.getAdjacent();
         int numAdj = adjList.size();
         Object[][] ret = new Object[numAdj][2];
         for (int i = 0; i < numAdj; i++)
@@ -316,8 +316,8 @@ public class GraphMap implements Serializable
     public Object removeVertex(String label)
     {
         GraphVertex vertexFind = null;
-        DSALinkedList newVertList = new DSALinkedList();
-        DSALinkedList jarAdj = new DSALinkedList();
+        LinkedList newVertList = new LinkedList();
+        LinkedList jarAdj = new LinkedList();
 
         while(!vertices.isEmpty())
         {
@@ -352,7 +352,7 @@ public class GraphMap implements Serializable
     public Double removeEdge(String node1, String node2)
     {
         Double ret = removeEdgeHelper(node1, node2);
-        DSALinkedList newVertices = new DSALinkedList();
+        LinkedList newVertices = new LinkedList();
 
         while (!vertices.isEmpty())
         {
@@ -377,7 +377,7 @@ public class GraphMap implements Serializable
     private Double removeEdgeHelper(String node1, String node2)
     {
         Double ret = 0.;
-        DSALinkedList newEdges = new DSALinkedList();
+        LinkedList newEdges = new LinkedList();
         while (!edges.isEmpty())
         {
             GraphEdge jarEdge = (GraphEdge)edges.removeFirst();
@@ -411,7 +411,7 @@ public class GraphMap implements Serializable
     {
         int verNum = getVertexCount();
         String[] ret = new String[verNum];
-        DSALinkedList jarVert = vertices.cloneList();
+        LinkedList jarVert = vertices.cloneList();
     
         int i = 0;
         while (!jarVert.isEmpty())
@@ -446,7 +446,7 @@ public class GraphMap implements Serializable
     {
         int vertNum = getVertexCount(); // number of vertices in graph
         String[][] ret = new String[vertNum + 1][vertNum + 1]; // 2D String array
-        DSALinkedList jarList = vertices.cloneList();
+        LinkedList jarList = vertices.cloneList();
         
         // names of arrays on the top and bottom
         for (int i = 1; i < (vertNum + 1); i++)
@@ -466,7 +466,7 @@ public class GraphMap implements Serializable
         {
             i++;
             GraphVertex jarNode = (GraphVertex)jarList.removeFirst();
-            DSALinkedList jarAdj = new DSALinkedList();
+            LinkedList jarAdj = new LinkedList();
             jarAdj = jarNode.getAdjacent().cloneList();
             
             while (!jarAdj.isEmpty())
@@ -566,13 +566,13 @@ public class GraphMap implements Serializable
     // BFS
     public Location[] breadthFirstSearch()
     {
-        DSALinkedList q = new DSALinkedList();
-        DSALinkedList returnList = new DSALinkedList();
+        LinkedList q = new LinkedList();
+        LinkedList returnList = new LinkedList();
         GraphVertex node;
 
         // make every node unvisited
         resetVertices();
-        DSALinkedList vertList = vertices.cloneList();
+        LinkedList vertList = vertices.cloneList();
 
         node = (GraphVertex)vertList.peekFirst();
         node.setVisited();
@@ -605,13 +605,13 @@ public class GraphMap implements Serializable
     // DFS!
     public Location[] depthFirstSearch()
     {
-        DSALinkedList s = new DSALinkedList();
-        DSALinkedList returnList = new DSALinkedList();
+        LinkedList s = new LinkedList();
+        LinkedList returnList = new LinkedList();
         GraphVertex node;
 
         // make every node unvisited
         resetVertices();
-        DSALinkedList vertList = vertices.cloneList();
+        LinkedList vertList = vertices.cloneList();
 
         node = (GraphVertex)vertList.peekFirst();
         node.setVisited();
@@ -643,7 +643,7 @@ public class GraphMap implements Serializable
     // returns the next unvisited node
     private GraphVertex getW(GraphVertex nodeIn)
     {
-        DSALinkedList adjIter = nodeIn.getAdjacent();
+        LinkedList adjIter = nodeIn.getAdjacent();
         Iterator iter = adjIter.iterator();
 
         while (iter.hasNext())
@@ -660,8 +660,8 @@ public class GraphMap implements Serializable
     // Dijkstra-Tri algorithm
     public Location[] Dijkstra(String node1, String node2)
     {
-        DSALinkedList q = new DSALinkedList();
-        DSALinkedList returnList = new DSALinkedList();
+        LinkedList q = new LinkedList();
+        LinkedList returnList = new LinkedList();
         GraphVertex node;
         boolean found = false;
 
@@ -678,7 +678,7 @@ public class GraphMap implements Serializable
             node = (GraphVertex)q.removeFirst();
             
             // set all adjacent nodes to visited and copy them to both queue and temp-list
-            DSALinkedList tempList = new DSALinkedList();
+            LinkedList tempList = new LinkedList();
             while (getW(node) != null && !found)
             {
                 GraphVertex nextNode = getW(node);
@@ -731,7 +731,7 @@ public class GraphMap implements Serializable
         String label = node1.getLabel() + node2.getLabel();
 
         Double ret = 0.0;
-        DSALinkedList edgeList = edges.cloneList();
+        LinkedList edgeList = edges.cloneList();
 
         boolean found = false;
         while (!edgeList.isEmpty() && !found)
