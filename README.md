@@ -14,7 +14,6 @@ This short program was created to demonstrate java implementation of various dat
     - [GraphMap](#graphmap)
     - [Heap](#heap)
     - [Hash Table](#hash-table)
-  - [Algorithms](#algorithms)
 
 ## Usage
 
